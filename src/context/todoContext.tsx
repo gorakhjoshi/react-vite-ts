@@ -1,12 +1,30 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
-interface TodoProviderProprs {
+interface TodoProviderProps {
   children: ReactNode;
-  //   style: string;
 }
 
-const TodoContext = createContext({});
+interface Task {
+  id: number;
+  title: string;
+  isComplete: boolean;
+}
 
-export default function TodoProvider({ children }: TodoProviderProprs) {
-  return <TodoContext.Provider value="hello">{children}</TodoContext.Provider>;
+interface TodoContextProps {
+  task: Task[];
+  setTask: (value: []) => void;
+}
+
+const TodoContext = createContext<TodoContextProps>({} as TodoContextProps);
+
+export default function TodoProvider({ children }: TodoProviderProps) {
+  const [task, setTask] = useState();
+
+  return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    // We have an issue below. Try to fix it and send Pull Request (PR) to my repo by creating separate branch.
+    <TodoContext.Provider value={{ task, setTask }}>
+      {children}
+    </TodoContext.Provider>
+  );
 }
