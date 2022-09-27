@@ -1,5 +1,7 @@
+import TodoProvider from './context/todoContext';
+
 function App() {
-  return <div>App</div>;
+  return <TodoProvider>App</TodoProvider>;
 }
 
 export default App;
