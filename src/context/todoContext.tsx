@@ -18,7 +18,7 @@ interface TodoContextProps {
 const TodoContext = createContext<TodoContextProps>({} as TodoContextProps);
 
 export default function TodoProvider({ children }: TodoProviderProps) {
-  //empty  array added on useState
+  //empty  array added on useState..
   const [task, setTask] = useState([]);
 
   return (
