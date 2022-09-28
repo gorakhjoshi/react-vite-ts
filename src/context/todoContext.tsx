@@ -15,7 +15,9 @@ interface TodoContextProps {
   setTask: (value: []) => void;
 }
 
-const TodoContext = createContext<TodoContextProps>({} as TodoContextProps);
+export const TodoContext = createContext<TodoContextProps>(
+  {} as TodoContextProps
+);
 
 export default function TodoProvider({ children }: TodoProviderProps) {
   const [task, setTask] = useState<Task[]>([]);

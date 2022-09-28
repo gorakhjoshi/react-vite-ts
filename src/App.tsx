@@ -1,11 +1,10 @@
 import TodoProvider from './context/todoContext';
+import MyComponent from './MyComponent';
 
 function App() {
   return (
     <TodoProvider>
-      <div>Hello</div>
-      <div>Hello</div>
-      <div>bye</div>
+      <MyComponent />
     </TodoProvider>
   );
 }
