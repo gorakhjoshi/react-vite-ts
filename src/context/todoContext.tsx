@@ -18,12 +18,11 @@ interface TodoContextProps {
 const TodoContext = createContext<TodoContextProps>({} as TodoContextProps);
 
 export default function TodoProvider({ children }: TodoProviderProps) {
-  //empty  array added on useState..
   const [task, setTask] = useState<Task[]>([]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     // We have an issue below. Try to fix it and send Pull Request (PR) to my repo by creating separate branch.
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <TodoContext.Provider value={{ task, setTask }}>
       {children}
     </TodoContext.Provider>
