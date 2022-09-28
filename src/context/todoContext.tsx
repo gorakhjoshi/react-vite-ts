@@ -18,7 +18,7 @@ interface TodoContextProps {
 const TodoContext = createContext<TodoContextProps>({} as TodoContextProps);
 
 export default function TodoProvider({ children }: TodoProviderProps) {
-  const [task, setTask] = useState();
+  const [task, setTask] = useState([]);
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
