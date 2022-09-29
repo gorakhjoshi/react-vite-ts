@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Icon, IconButton } from '@chakra-ui/react';
 import { BsFillAlarmFill } from 'react-icons/bs';
+import TodoInput from '../TodoInput';
 
 function TodoComponent() {
   return (
@@ -33,6 +34,7 @@ function TodoComponent() {
         </Flex>
       </Flex>
       <Box>
+        <TodoInput />
         {/* TODO: Create TodoInput Component */}
         {/* TODO: Create TodoList Component */}
         {/* TODO: Create FilterTodo Component */}
