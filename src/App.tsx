@@ -1,10 +1,10 @@
+import TodoComponent from './components/TodoComponent';
 import TodoProvider from './context/todoContext';
-import MyComponent from './MyComponent';
 
 function App() {
   return (
     <TodoProvider>
-      <MyComponent />
+      <TodoComponent />
     </TodoProvider>
   );
 }
