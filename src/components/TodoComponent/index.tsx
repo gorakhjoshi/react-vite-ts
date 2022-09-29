@@ -35,7 +35,6 @@ function TodoComponent() {
       </Flex>
       <Box>
         <TodoInput />
-        {/* TODO: Create TodoInput Component */}
         {/* TODO: Create TodoList Component */}
         {/* TODO: Create FilterTodo Component */}
       </Box>

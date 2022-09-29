@@ -4,14 +4,17 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  useColorMode,
 } from '@chakra-ui/react';
 import { IoIosRadioButtonOff } from 'react-icons/io';
 
 function TodoInput() {
+  const { colorMode } = useColorMode();
+
   return (
     <Flex w="100%" mb="6" boxShadow="2xl">
       <InputGroup>
-        <InputLeftElement py="8" px="38px">
+        <InputLeftElement py="8" px="38px" color={colorMode ? 'red' : 'green'}>
           <Icon as={IoIosRadioButtonOff} fontSize="26" />
         </InputLeftElement>
 
