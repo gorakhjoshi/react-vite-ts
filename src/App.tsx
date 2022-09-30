@@ -5,6 +5,7 @@ function App() {
   return (
     <TodoProvider>
       <TodoComponent />
+      <div>bye</div>
     </TodoProvider>
   );
 }
