@@ -1,47 +1,47 @@
-import { Box, Flex, Heading, Icon, IconButton } from '@chakra-ui/react';
-import { BsFillAlarmFill } from 'react-icons/bs';
+import { Flex, Box, Heading, IconButton, Icon } from '@chakra-ui/react';
+import { BsMoonFill } from 'react-icons/bs';
 import TodoInput from '../TodoInput';
 import TodoList from '../TodoList';
 
-function TodoComponent() {
+export default function TodoComponent() {
   return (
-    <Flex
-      as="main"
-      w="100%"
-      h="400px"
-      bgImage="assets/bgImage.jpg"
-      position="absolute"
-      bgSize="cover"
-      bgPosition="center"
-      direction="column"
-    >
+    <>
+      <Flex
+        h="300px"
+        w="100%"
+        bgImage="https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        position="absolute"
+        bgSize="cover"
+        bgPosition="center"
+      />
+
       <Flex
         direction="column"
-        maxW="600px"
-        position="relative"
+        maxW="585px"
         mx="auto"
+        position="relative"
         top="50"
-        p="5"
+        p="6"
       >
-        <Flex justify="space-between">
-          <Heading as="h1" fontSize="50px">
-            TODO
+        <Flex justify="space-between" marginBottom="8" as="header">
+          <Heading fontSize="42px" as="h1">
+            T O D O
           </Heading>
           <IconButton
             aria-label="toggle mode"
             colorScheme="transparent"
-            icon={<Icon as={BsFillAlarmFill} />}
-            size="lg"
+            icon={
+              <Icon as={BsMoonFill} color="hsl(236, 33%, 92%)" fontSize="24" />
+            }
           />
         </Flex>
+
+        <Box as="main">
+          <TodoInput />
+          <TodoList />
+          {/* TODO: Create FilterTodo Component */}
+        </Box>
       </Flex>
-      <Box mt="50px">
-        <TodoInput />
-        <TodoList />
-        {/* TODO: Create FilterTodo Component */}
-      </Box>
-    </Flex>
+    </>
   );
 }
-
-export default TodoComponent;

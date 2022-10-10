@@ -1,25 +1,36 @@
 import {
+  Input,
   Flex,
   Icon,
-  Input,
   InputGroup,
   InputLeftElement,
   useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { IoIosRadioButtonOff } from 'react-icons/io';
 
 function TodoInput() {
   const { colorMode } = useColorMode();
+  const bg = useColorModeValue('white', 'hsl(235, 24%, 19%)');
+  const color = useColorModeValue('hsl(235, 19%, 35%)', 'hsl(234, 39%, 85%)');
 
   return (
     <Flex w="100%" mb="6" boxShadow="2xl">
       <InputGroup>
-        <InputLeftElement py="8" px="38px" color={colorMode ? 'red' : 'green'}>
+        <InputLeftElement
+          py="8"
+          px="38px"
+          color={
+            colorMode === 'light' ? 'hsl(236, 9%, 61%)' : 'hsl(233, 14%, 35%)'
+          }
+        >
           <Icon as={IoIosRadioButtonOff} fontSize="26" />
         </InputLeftElement>
 
         <Input
+          color={color}
           variant="filled"
+          bgColor={bg}
           placeholder="Create a new todo..."
           py="8"
           pl="16"
