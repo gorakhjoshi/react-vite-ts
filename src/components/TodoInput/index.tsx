@@ -34,6 +34,7 @@ function TodoInput() {
           placeholder="Create a new todo..."
           py="8"
           pl="16"
+          background="hsl(235, 24%, 19%)"
           maxLength={40}
           _hover={{
             background: '',
