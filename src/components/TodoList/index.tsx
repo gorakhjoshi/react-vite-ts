@@ -16,7 +16,7 @@ function TodoList() {
   const bg = useColorModeValue('white', 'hsl(235, 24%, 19%)');
   const border = useColorModeValue('hsl(233, 11%, 84%)', 'hsl(233, 14%, 35%)');
 
-  const { task } = useHandleTodo();
+  const { task, handleDeleteTask } = useHandleTodo();
 
   return (
     <Flex direction="column" boxShadow="2xl" bgColor={bg} borderRadius="md">
@@ -95,6 +95,7 @@ function TodoList() {
             }
             bgColor="transparent"
             _hover={{ bgColor: '' }}
+            onClick={() => handleDeleteTask(tasks.id)}
           />
         </Flex>
       ))}

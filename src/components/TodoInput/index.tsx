@@ -8,11 +8,15 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { IoIosRadioButtonOff } from 'react-icons/io';
+import useHandleTodo from '../../hooks/useHandleTodo';
 
 function TodoInput() {
   const { colorMode } = useColorMode();
   const bg = useColorModeValue('white', 'hsl(235, 24%, 19%)');
   const color = useColorModeValue('hsl(235, 19%, 35%)', 'hsl(234, 39%, 85%)');
+
+  const { handleCreateNewTask, setNewTaskTitle, newTaskTitle } =
+    useHandleTodo();
 
   return (
     <Flex w="100%" mb="6" boxShadow="2xl">
@@ -42,6 +46,9 @@ function TodoInput() {
           _focus={{
             background: '',
           }}
+          onChange={(e) => setNewTaskTitle(e.target.value)}
+          value={newTaskTitle}
+          onKeyUp={handleCreateNewTask}
         />
       </InputGroup>
     </Flex>

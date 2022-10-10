@@ -1,4 +1,6 @@
+import { useColorMode } from '@chakra-ui/react';
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface TodoProviderProps {
   children: ReactNode;
@@ -14,6 +16,12 @@ interface TodoContextProps {
   task: Task[];
   setTask: (value: []) => void;
   filter: string;
+  handleCompletedTask: (id: number) => void;
+  handleDeleteTask: (id: number) => void;
+  // handleCreateNewTask: (event: KeyboardEvent) => void;
+  handleCreateNewTask: any;
+  newTaskTitle: string;
+  setNewTaskTitle: (value: string) => void;
 }
 
 export const TodoContext = createContext<TodoContextProps>(
@@ -22,7 +30,9 @@ export const TodoContext = createContext<TodoContextProps>(
 
 export default function TodoProvider({ children }: TodoProviderProps) {
   const [task, setTask] = useState<Task[]>([]);
-  const [filter] = useState('All');
+  const [filter, setFilter] = useState('All');
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     const initialTasks = [
@@ -49,9 +59,73 @@ export default function TodoProvider({ children }: TodoProviderProps) {
     localStorage.setItem('tasks', JSON.stringify(task));
   }, [task]);
 
+  function handleCompletedTask(id: number) {}
+
+  function handleDeleteTask(id: number) {
+    const filteredTask = task.filter((tasks) => tasks.id !== id);
+
+    setTask(filteredTask);
+    toast.success('Item Deleted!', {
+      theme: colorMode,
+    });
+  }
+
+  function handleCreateNewTask(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      if (!newTaskTitle.trim()) {
+        toast.error('Your Todo must have a title', {
+          theme: colorMode,
+        });
+        return setNewTaskTitle('');
+      }
+
+      const newTask = {
+        id: Math.floor(Math.random() * 10000),
+        title: newTaskTitle,
+        isComplete: false,
+      };
+
+      if (task.length === 0) {
+        setTask([newTask]);
+        toast.success('Todo added!', {
+          theme: colorMode,
+        });
+        return setNewTaskTitle('');
+      }
+
+      if (task.length >= 20) {
+        toast.error('There is a limit of 20 Todos', {
+          theme: colorMode,
+        });
+        return null;
+      }
+
+      setTask((oldState) => [...oldState, newTask]);
+
+      toast.success('Todo added!', {
+        theme: colorMode,
+      });
+      setFilter('All');
+      setNewTaskTitle('');
+    }
+
+    return null;
+  }
+
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <TodoContext.Provider value={{ task, setTask, filter }}>
+    <TodoContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{
+        task,
+        setTask,
+        filter,
+        handleCompletedTask,
+        handleDeleteTask,
+        handleCreateNewTask,
+        newTaskTitle,
+        setNewTaskTitle,
+      }}
+    >
       {children}
     </TodoContext.Provider>
   );
