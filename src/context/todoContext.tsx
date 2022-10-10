@@ -13,6 +13,7 @@ interface Task {
 interface TodoContextProps {
   task: Task[];
   setTask: (value: []) => void;
+  filter: string;
 }
 
 export const TodoContext = createContext<TodoContextProps>(
@@ -21,11 +22,12 @@ export const TodoContext = createContext<TodoContextProps>(
 
 export default function TodoProvider({ children }: TodoProviderProps) {
   const [task, setTask] = useState<Task[]>([]);
+  const [filter] = useState('All');
 
   useEffect(() => {
     const initialTasks = [
       { id: 1, title: 'Complete online JavaScript course', isComplete: true },
-      { id: 2, title: 'Jog around the park 3x', isComplete: false },
+      { id: 2, title: 'Jog around the park 3x', isComplete: true },
       { id: 3, title: '10 minutes meditation', isComplete: false },
       { id: 4, title: 'Read for 1 hour', isComplete: false },
       { id: 5, title: 'Pick up groceries', isComplete: false },
@@ -49,7 +51,7 @@ export default function TodoProvider({ children }: TodoProviderProps) {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <TodoContext.Provider value={{ task, setTask }}>
+    <TodoContext.Provider value={{ task, setTask, filter }}>
       {children}
     </TodoContext.Provider>
   );

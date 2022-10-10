@@ -1,5 +1,6 @@
 import { Flex, Box, Heading, IconButton, Icon } from '@chakra-ui/react';
 import { BsMoonFill } from 'react-icons/bs';
+import FilterTodo from '../FilterTodo';
 import TodoInput from '../TodoInput';
 import TodoList from '../TodoList';
 
@@ -39,7 +40,7 @@ export default function TodoComponent() {
         <Box as="main">
           <TodoInput />
           <TodoList />
-          {/* TODO: Create FilterTodo Component */}
+          <FilterTodo />
         </Box>
       </Flex>
     </>
